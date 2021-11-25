@@ -83,7 +83,7 @@ fn derive_deserialize_impl(
 
                 quote! {
                     impl #impl_generics Deserialize<#name #ty_generics, __D> for Archived<#name #ty_generics> #deserialize_where {
-                        #[inline]
+                        //#[inline] See https://github.com/rust-lang/rust/issues/91231
                         fn deserialize(&self, deserializer: &mut __D) -> ::core::result::Result<#name #ty_generics, __D::Error> {
                             Ok(#name {
                                 #(#deserialize_fields,)*
@@ -125,7 +125,7 @@ fn derive_deserialize_impl(
 
                 quote! {
                     impl #impl_generics Deserialize<#name #ty_generics, __D> for Archived<#name #ty_generics> #deserialize_where {
-                        #[inline]
+                        //#[inline] See https://github.com/rust-lang/rust/issues/91231
                         fn deserialize(&self, deserializer: &mut __D) -> ::core::result::Result<#name #ty_generics, __D::Error> {
                             Ok(#name(
                                 #(#deserialize_fields,)*
@@ -136,7 +136,7 @@ fn derive_deserialize_impl(
             }
             Fields::Unit => quote! {
                 impl #impl_generics Deserialize<#name #ty_generics, __D> for Archived<#name #ty_generics> #where_clause {
-                    #[inline]
+                    //#[inline] See https://github.com/rust-lang/rust/issues/91231
                     fn deserialize(&self, _: &mut __D) -> ::core::result::Result<#name #ty_generics, __D::Error> {
                         Ok(#name)
                     }
@@ -238,7 +238,7 @@ fn derive_deserialize_impl(
 
             quote! {
                 impl #impl_generics Deserialize<#name #ty_generics, __D> for Archived<#name #ty_generics> #deserialize_where {
-                    #[inline]
+                    //#[inline] See https://github.com/rust-lang/rust/issues/91231
                     fn deserialize(&self, deserializer: &mut __D) -> ::core::result::Result<#name #ty_generics, __D::Error> {
                         Ok(match self {
                             #(#deserialize_variants,)*

@@ -312,7 +312,7 @@ fn derive_archive_impl(
 
                                 // Some resolvers will be (), this allow is to prevent clippy from complaining
                                 #[allow(clippy::unit_arg)]
-                                #[inline]
+                                //#[inline] See https://github.com/rust-lang/rust/issues/91231
                                 unsafe fn resolve(&self, pos: usize, resolver: Self::Resolver, out: *mut Self::Archived) {
                                     #(#resolve_fields)*
                                 }
@@ -492,7 +492,7 @@ fn derive_archive_impl(
 
                                 // Some resolvers will be (), this allow is to prevent clippy from complaining
                                 #[allow(clippy::unit_arg)]
-                                #[inline]
+                                //#[inline] See https://github.com/rust-lang/rust/issues/91231
                                 unsafe fn resolve(&self, pos: usize, resolver: Self::Resolver, out: *mut Self::Archived) {
                                     #(#resolve_fields)*
                                 }
@@ -586,7 +586,7 @@ fn derive_archive_impl(
                                 type Archived = #archived_type;
                                 type Resolver = #resolver #ty_generics;
 
-                                #[inline]
+                                //#[inline] See https://github.com/rust-lang/rust/issues/91231
                                 unsafe fn resolve(&self, _: usize, _: Self::Resolver, _: *mut Self::Archived) {}
                             }
 
@@ -1252,7 +1252,7 @@ fn derive_archive_impl(
 
                         // Some resolvers will be (), this allow is to prevent clippy from complaining
                         #[allow(clippy::unit_arg)]
-                        #[inline]
+                        //#[inline] See https://github.com/rust-lang/rust/issues/91231
                         unsafe fn resolve(&self, pos: usize, resolver: Self::Resolver, out: *mut Self::Archived) {
                             match resolver {
                                 #(#resolve_arms,)*

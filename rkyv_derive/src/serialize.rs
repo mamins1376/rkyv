@@ -77,7 +77,7 @@ fn derive_serialize_impl(
 
                 quote! {
                     impl #impl_generics Serialize<__S> for #name #ty_generics #serialize_where {
-                        #[inline]
+                        //#[inline] See https://github.com/rust-lang/rust/issues/91231
                         fn serialize(&self, serializer: &mut __S) -> ::core::result::Result<Self::Resolver, __S::Error> {
                             Ok(#resolver {
                                 #(#resolver_values,)*
@@ -107,7 +107,7 @@ fn derive_serialize_impl(
 
                 quote! {
                     impl #impl_generics Serialize<__S> for #name #ty_generics #serialize_where {
-                        #[inline]
+                        //#[inline] See https://github.com/rust-lang/rust/issues/91231
                         fn serialize(&self, serializer: &mut __S) -> ::core::result::Result<Self::Resolver, __S::Error> {
                             Ok(#resolver(
                                 #(#resolver_values,)*
@@ -119,7 +119,7 @@ fn derive_serialize_impl(
             Fields::Unit => {
                 quote! {
                     impl #impl_generics Serialize<__S> for #name #ty_generics #where_clause {
-                        #[inline]
+                        //#[inline] See https://github.com/rust-lang/rust/issues/91231
                         fn serialize(&self, serializer: &mut __S) -> ::core::result::Result<Self::Resolver, __S::Error> {
                             Ok(#resolver)
                         }
@@ -204,7 +204,7 @@ fn derive_serialize_impl(
 
             quote! {
                 impl #impl_generics Serialize<__S> for #name #ty_generics #serialize_where {
-                    #[inline]
+                    //#[inline] See https://github.com/rust-lang/rust/issues/91231
                     fn serialize(&self, serializer: &mut __S) -> ::core::result::Result<Self::Resolver, __S::Error> {
                         Ok(match self {
                             #(#serialize_arms,)*
